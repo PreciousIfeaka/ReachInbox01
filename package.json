@@ -1,0 +1,19 @@
+{
+  "name": "reachinbox01",
+  "version": "1.0.0",
+  "description": "Implements email sender with AI features",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ReachInbox01"
+  },
+  "author": "PreciousIfeaka",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
