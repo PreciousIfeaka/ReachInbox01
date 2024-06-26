@@ -4,7 +4,8 @@
   "description": "Implements email sender with AI features",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,17 @@
   "author": "PreciousIfeaka",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
+    "cohere-ai": "^7.10.6",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "googleapis": "^140.0.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-outlook": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
