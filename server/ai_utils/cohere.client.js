@@ -1,14 +1,16 @@
 const { CohereClient } = require('cohere-ai');
 require("dotenv").config();
 
-const cohere = new CohereClient({
-  token: 'Your API key',
-});
-
-(async () => {
-  const response = await cohere.chat({
-		message: "hello world!"
+async function cohereRespond(prompt) {
+  const cohere = new CohereClient({
+    token: process.env.COHERE_API_KEY,
   });
 
-  console.log(response);
-})();
+  const response = await cohere.chat({
+    message: `${prompt}`
+  });
+
+  return response.text;
+}
+
+module.exports = cohereRespond;

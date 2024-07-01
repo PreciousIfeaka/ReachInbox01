@@ -1,24 +1,19 @@
-require("dotenv").config();
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const { google } = require("googleapis");
 
-const AUTH_OPTIONS = {
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "/auth/google/callback",
-  passReqToCallback: true,
-};
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URL;
 
-passport.use(new GoogleStrategy(AUTH_OPTIONS, (request, accessToken, requestToken, profile, done) => {
-  console.log("Verified");
-  done(null, { profile, accessToken });
-}));
+// OAuth2 client setup
+const OAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URI
+);
 
-// Serialize and deserialize user (necessary for session management)
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+const authUrl = OAuth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.modify']
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+module.exports = { OAuth2Client, authUrl }
